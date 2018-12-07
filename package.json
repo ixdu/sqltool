@@ -1,0 +1,15 @@
+{
+  "name": "sqltool",
+  "version": "0.1.1",
+  "description": "tool for realtime updating database and debugging sql code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nikita Zaharov aka ix",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "mysql": "github:mysqljs/mysql"
+  }
+}
