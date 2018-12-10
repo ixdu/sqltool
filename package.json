@@ -1,7 +1,7 @@
 {
   "name": "sqltool",
   "version": "0.1.1",
-  "description": "tool for realtime updating database and debugging sql code",
+  "description": "tool for realtime updating database and debugging sql for working with any editor",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

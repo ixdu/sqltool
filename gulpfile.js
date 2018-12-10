@@ -4,6 +4,8 @@ var stream = require('stream'),
 
     gulp = require('gulp');
 
+var child_process = require('child_process');
+
 var pathToSqlDirectory = "./";
 
 var mysql = require('mysql');
@@ -35,9 +37,20 @@ setInterval(function(){
     });    
 }, 3000);
 
-gulp.task('default', [], function(arg){
+//gulp.task('default', [], function(arg){
     gulp.watch(pathToSqlDirectory + '**/**/*.sql', function(event){
-	var connection = mysql.createConnection(mysql_config);
+	child_process.exec('mysql -u ' + mysql_config.user + ' -p' + mysql_config.password + ' ' + mysql_config.database + ' < ' + event.path, (err, stdout, stderr) => {
+	    if (err) {
+		console.log(err);
+		// node couldn't execute the command
+		return;
+	    }
+
+	    // the *entire* stdout and stderr (buffered)
+	    console.log(`stdout: ${stdout}`);
+	    console.log(`stderr: ${stderr}`);
+	});
+	/*	var connection = mysql.createConnection(mysql_config);
 	var query = fs.readFileSync(event.path).toString();
 	connection.connect();
 
@@ -48,8 +61,10 @@ gulp.task('default', [], function(arg){
 	    else
 		console.log(JSON.stringify(results, null, 4));
 	    connection.end();    
-	});
+	});*/
 	
     });
 
-});
+//});
+
+//gulp.runTask('default');
